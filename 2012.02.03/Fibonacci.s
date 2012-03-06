@@ -56,7 +56,7 @@ main:
                             # value
                             # in r8
     mov %r8, %rdi           # Move r8 into rdi
-    mov $0, %eax            # Move 0 into eax
+    mov $0, %rax            # Move 0 into rax
     call atoi               # Call atoi on argv[1]
     mov %rax, %r8           # Move the return value from atoi into r8
     cmp $0, %r8             # Compare r8 to 0
