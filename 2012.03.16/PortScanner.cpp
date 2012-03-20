@@ -1,13 +1,7 @@
-#include <string>
 #include <sstream>
 #include <iostream>
-#include <iterator>
 
-#include <ctype.h>
-#include <sys/socket.h>
-#include <strings.h>
 #include <arpa/inet.h>
-#include <unistd.h>
 
 using namespace std;
 
