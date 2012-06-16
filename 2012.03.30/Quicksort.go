@@ -39,7 +39,8 @@ func Partition(NumberList []int) ([]int, int, []int) {
     var Higher = make([]int, 0)
     var Random int
 
-    /* Seed the random number generator with the time in nanoseconds */
+    /* Seed the random number generator with the time in
+     * nanoseconds */
     rand.Seed(time.Now().UnixNano())
 
     /* Get a random number */

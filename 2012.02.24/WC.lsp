@@ -1,5 +1,6 @@
 (defun ProcessFile (FileName)
-    "Process a file, counting its number of words + characters + lines"
+    "Process a file, counting its number of words + characters +
+     lines"
     (setf c 0)
     (setf w 0)
     (setf rw 0)
@@ -14,8 +15,9 @@
               ; If there is a newline, increment lines
               (char= ch #\newline)
               (incf l))
-            ; If there is a word delimiter, and a word was being read,
-            ; increment the words and unset the reading-word flag
+            ; If there is a word delimiter, and a word was being
+            ; read, increment the words and unset the reading-word
+            ; flag
             (if
               (and
                 (or

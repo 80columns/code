@@ -1,13 +1,15 @@
 import java.util.*;
 
-class HeapSort
+class Heapsort
 {
-    public static ArrayList<Integer> MaxHeapify(ArrayList<Integer> NumberList)
+    public static ArrayList<Integer> MaxHeapify(ArrayList<Integer>
+                                                NumberList)
     {
-        /* Start sifting up the largest number from the first index in
-         * NumberList such that the index has children in the array/heap
-         * representation:
-         * http://en.wikipedia.org/wiki/Binary_heap#Heap_implementation */
+        /* Start sifting up the largest number from the first index
+         * in NumberList such that the index has children in the
+         * array/heap representation:
+         * http://en.wikipedia.org/wiki/Binary_heap
+         * #Heap_implementation */
         for(int I = (NumberList.size() / 2) - 1; I >= 0; I--)
         {
             /* Compare the value of the node against its left
@@ -31,7 +33,7 @@ class HeapSort
                  * child's value */
                 if(NumberList.get((I*2) + 2) > NumberList.get(I))
                 {
-                    /* Swap the value of the node with the value of7
+                    /* Swap the value of the node with the value of
                      * its right child so that the highest value is
                      * placed into the node */
                     Integer Temp = NumberList.get(I);
@@ -44,9 +46,10 @@ class HeapSort
         return NumberList;
     }
 
-    public static void HeapSort(ArrayList<Integer> NumberList)
+    public static void Heapsort(ArrayList<Integer> NumberList)
     {
-        ArrayList<Integer> SortedNumberList = new ArrayList<Integer>();
+        ArrayList<Integer> SortedNumberList =
+            new ArrayList<Integer>();
 
         /* Turn the array/heap into a max-heap */
         NumberList = MaxHeapify(NumberList);
@@ -60,17 +63,19 @@ class HeapSort
             NumberList = MaxHeapify(NumberList);
         }
 
-        System.out.println("The sorted numbers: " + SortedNumberList);
+        System.out.println("The sorted numbers: " +
+                           SortedNumberList);
     }
 
     public static void main(String[] args)
     {
         /* Check the number of command-line arguments */
-        if(args.length < 1)
+        if(args.length < 2)
         {
-            System.out.println("Error: Supply at least two numbers as " +
-                               "arguments");
-            System.out.println("E.g.: java HeapSort 1 5 2 8 3 0 9");
+            System.out.println("Error: Supply at least two numbers" +
+                               " as arguments");
+            System.out.println("E.g.: java Heapsort 1 5 2 8 3 0 9");
+            return;
         }
 
         /* Create an array list that will hold the numbers */
@@ -83,7 +88,7 @@ class HeapSort
         }
 
         /* Sort the numbers */
-        HeapSort(NumberList);
+        Heapsort(NumberList);
 
         /* Return from main */
         return;

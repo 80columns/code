@@ -8,31 +8,35 @@ import math
 import mmap
 
 
-#========================================================================#
-# ================================= Version ============================ #
-#========================================================================#
+#===================================================================#
+# ============================== Version ========================== #
+#===================================================================#
 def Version():
     '''
         [ sys.stdout +:= "PyCat v1.0" ]
     '''
 
     print("PyCat v1.0")
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ================================= Help =============================== #
-#========================================================================#
+#===================================================================#
+# ============================== Help ============================= #
+#===================================================================#
 def Help():
     '''
         [ sys.stdout +:= "PyCat v1.0\n" +
                          "Usage: pycat [OPTIONS] [FILE]\n" +
-                         "Concatenate FILE(S) to standard output.\n\n" +
-                         "-b\t\tnumber nonempty output lines, overrides" +
+                         "Concatenate FILE(S) to standard " +
+                         "output.\n\n" +
+                         "-b\t\tnumber nonempty output lines, " +
+                         "overrides" +
                          " -n\n" +
-                         "-E\t\tdisplay $ at the end of each line\n" +
+                         "-E\t\tdisplay $ at the end of each " +
+                         "line\n" +
                          "-n\t\tnumber all output lines\n" +
-                         "-s\t\tsuppress repeated empty output lines\n" ]
+                         "-s\t\tsuppress repeated empty output " +
+                         "lines\n" ]
     '''
 
     print("PyCat v1.0")
@@ -43,16 +47,16 @@ def Help():
     print("-E\t\tdisplay $ at the end of each line")
     print("-n\t\tnumber all output lines")
     print("-s\t\tsuppress repeated empty output lines")
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ============================== CountLines ============================ #
-#========================================================================#
+#===================================================================#
+# =========================== CountLines ========================== #
+#===================================================================#
 def CountLines(FileName):
     '''
-        [ Read the number of newlines in the file referenced by FileName
-          and return that number ]
+        [ Read the number of newlines in the file referenced by
+          FileName and return that number ]
     '''
 
     File = open(FileName, "r+")
@@ -62,14 +66,14 @@ def CountLines(FileName):
     while Readline():
         NumLines += 1
     return NumLines
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ========================== NumberNonBlankPrint ======================= #
-#========================================================================#
-def NumberNonBlankPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank,
-                        LineNumber, LineIndent):
+#===================================================================#
+# ======================= NumberNonBlankPrint ===================== #
+#===================================================================#
+def NumberNonBlankPrint(Line, ShowEnds, SqueezeBlank,
+                        PreviousLineBlank, LineNumber, LineIndent):
     '''
         [ if SqueezeBlank == True and PreviousLineBlank == True and
           len(Line) == 0 ->
@@ -112,8 +116,8 @@ def NumberNonBlankPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank,
             while Temp > 0:
                 LinePrefix += " "
                 Temp -= 1
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + Line \
-                             + "$\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             Line + "$\n")
             LineNumber += 1
     else:
         if len(Line) == 0:
@@ -126,18 +130,18 @@ def NumberNonBlankPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank,
             while Temp > 0:
                 LinePrefix += " "
                 Temp -= 1
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + Line \
-                             + "\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             Line + "\n")
             LineNumber += 1
 
     return PreviousLineBlank, LineNumber
 
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ============================== NumberAllPrint ======================== #
-#========================================================================#
+#===================================================================#
+# =========================== NumberAllPrint ====================== #
+#===================================================================#
 def NumberAllPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank,
                    LineNumber, LineIndent):
     '''
@@ -178,31 +182,33 @@ def NumberAllPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank,
     elif ShowEnds == True:
         if len(Line) == 0:
             PreviousLineBlank = True
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + "$\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             "$\n")
             LineNumber += 1
         else:
             PreviousLineBlank = False
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + Line \
-                             + "$\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             Line + "$\n")
             LineNumber += 1
     else:
         if len(Line) == 0:
             PreviousLineBlank = True
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + "\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             "\n")
             LineNumber += 1
         else:
             PreviousLineBlank = False
-            sys.stdout.write(LinePrefix + str(LineNumber) + "  " + Line \
-                             + "\n")
+            sys.stdout.write(LinePrefix + str(LineNumber) + "  " +
+                             Line + "\n")
             LineNumber += 1
 
     return PreviousLineBlank, LineNumber
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ============================ NoNumberPrint =========================== #
-#========================================================================#
+#===================================================================#
+# ========================= NoNumberPrint ========================= #
+#===================================================================#
 def NoNumberPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank):
     '''
         [ if SqueezeBlank == True and PreviousLineBlank == True and
@@ -246,14 +252,15 @@ def NoNumberPrint(Line, ShowEnds, SqueezeBlank, PreviousLineBlank):
             sys.stdout.write(Line + "\n")
 
     return PreviousLineBlank
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ================================= ProcessLine ======================== #
-#========================================================================#
-def ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank, NumberNonblank,
-                PreviousLineBlank, LineNumber, LineIndent):
+#===================================================================#
+# ============================== ProcessLine ====================== #
+#===================================================================#
+def ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank,
+                NumberNonblank, PreviousLineBlank, LineNumber,
+                LineIndent):
     '''
         [ if NumberNonblank == True ->
               PreviousLineBlank, LineNumber =
@@ -299,9 +306,10 @@ def ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank, NumberNonblank,
         #           sys.stdout +:= "LinePrefix LineNumber    Line$\n"
         #
         #   return PreviousLineBlank, LineNumber ]
-        PreviousLineBlank, LineNumber =
+        PreviousLineBlank, LineNumber = \
             NumberNonBlankPrint(Line, ShowEnds, SqueezeBlank,
-                                PreviousLineBlank, LineNumber, LineIndent)
+                                PreviousLineBlank, LineNumber,
+                                LineIndent)
     elif NumberAll == True:
         # [ if SqueezeBlank == True and PreviousLineBlank == True and
         #   len(Line) == 0 ->
@@ -326,11 +334,10 @@ def ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank, NumberNonblank,
         #           sys.stdout +:= "LinePrefix LineNumber    Line\n"
         #
         #   return PreviousLineBlank, LineNumber ]
-        PreviousLineBlank, LineNumber = NumberAllPrint(Line, ShowEnds,
-                                                       SqueezeBlank,
-                                                       PreviousLineBlank,
-                                                       LineNumber,
-                                                       LineIndent)
+        PreviousLineBlank, LineNumber = \
+            NumberAllPrint(Line, ShowEnds, SqueezeBlank,
+                           PreviousLineBlank, LineNumber,
+                           LineIndent)
     else:
         # [ if SqueezeBlank == True and PreviousLineBlank == True and
         #   len(Line) == 0 ->
@@ -351,22 +358,23 @@ def ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank, NumberNonblank,
         #           sys.stdout +:= "Line\n"
         #
         #   return PreviousLineBlank ]
-        PreviousLineBlank = NoNumberPrint(Line, ShowEnds, SqueezeBlank,
+        PreviousLineBlank = NoNumberPrint(Line, ShowEnds,
+                                          SqueezeBlank,
                                           PreviousLineBlank)
 
     return PreviousLineBlank, LineNumber
-#========================================================================#
+#===================================================================#
 
 
-#========================================================================#
-# ================================= Main =============================== #
-#========================================================================#
+#===================================================================#
+# ============================== Main ============================= #
+#===================================================================#
 def main():
     '''
-        [ Read in options and the name of a file from the command line,
-          then read the contents of the file and print it line-by-line
-          with extra information if specified by the command line
-          options ]
+        [ Read in options and the name of a file from the command
+          line, then read the contents of the file and print it
+          line-by-line with extra information if specified by the
+          command line options ]
     '''
 
     # [ Set initial values for the program ->
@@ -428,11 +436,12 @@ def main():
     if NumberNonblank == True:
         NumberAll = False
 
-    # [ Read the number of newlines in the file referenced by sys.argv[1]
-    #   and return that number ]
+    # [ Read the number of newlines in the file referenced by
+    #   sys.argv[1] and return that number ]
     NumLines = CountLines(sys.argv[len(sys.argv) - 1])
 
-    # [ Take the log base 10 of NumLines and put the result in NumSpace ]
+    # [ Take the log base 10 of NumLines and put the result in
+    #   NumSpace ]
     LineIndent = math.log10(NumLines)
 
     # [ Iterate over the lines in the input file, and for
@@ -441,8 +450,10 @@ def main():
         # [ Take a string as input with all options ->
         #       if NumberNonblank == True ->
         #           PreviousLineBlank, LineNumber =
-        #               NumberNonblankPrint(Line, ShowEnds, SqueezeBlank,
-        #                                   PreviousLineBlank, LineNumber,
+        #               NumberNonblankPrint(Line, ShowEnds,
+        #                                   SqueezeBlank,
+        #                                   PreviousLineBlank,
+        #                                   LineNumber,
         #                                   LineIndent)
         #       else if NumberAll == True ->
         #           PreviousLineBlank, LineNumber =
@@ -456,14 +467,15 @@ def main():
         #                             LineIndent)
         #       return PreviousLineBlank, LineNumber ]
         Line = Line.strip('\n')
-        PreviousLineBlank, LineNumber =
+        PreviousLineBlank, LineNumber = \
             ProcessLine(Line, NumberAll, ShowEnds, SqueezeBlank,
-                        NumberNonblank, PreviousLineBlank, LineNumber,
-                        LineIndent)
+                        NumberNonblank, PreviousLineBlank,
+                        LineNumber, LineIndent)
 
-    # [ Exit the program, returning an exit status of 0 to the shell ]
+    # [ Exit the program, returning an exit status of 0 to the
+    #   shell ]
     sys.exit(0)
-#========================================================================#
+#===================================================================#
 
 
 if __name__ == "__main__":

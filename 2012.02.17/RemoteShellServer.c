@@ -29,8 +29,8 @@ int main(int argc, char **argv)
 {
     if(argc != 2)
     {
-        fprintf(stderr, "Error: Supply a port to listen on as a single"
-                        " argument\n");
+        fprintf(stderr, "Error: Supply a port to listen on as a"
+                        " single argument\n");
         fprintf(stderr, "E.g. %s 80\n", argv[0]);
         return 1;
     }
@@ -134,7 +134,8 @@ int AcceptNewConnection()
                 CommandStringLength *= 2;
                 CommandString =
                     (char *)realloc(CommandString,
-                                    CommandStringLength * sizeof(char));
+                                    CommandStringLength * \
+                                    sizeof(char));
             }
 
             strncat(CommandString, &ReceivedCharacter, 1);
@@ -162,8 +163,9 @@ int AcceptNewConnection()
             {
                 OutputStringLength *= 2;
                 OutputString =
-                    (char *)realloc(OutputString, OutputStringLength * \
-                    sizeof(char));
+                    (char *)realloc(OutputString,
+                                    OutputStringLength * \
+                                    sizeof(char));
             }
         
             strncat(OutputString, &OutputCharacter, 1);
@@ -173,7 +175,8 @@ int AcceptNewConnection()
 
         for(Index = 0; Index < strlen(OutputString); Index++)
         {
-            SendCharacter(OutputString[Index], ConnectedServerSocket);
+            SendCharacter(OutputString[Index],
+                          ConnectedServerSocket);
         }
         SendCharacter('\0', ConnectedServerSocket);
     }

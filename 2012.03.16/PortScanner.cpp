@@ -1,6 +1,6 @@
 #include <sstream>
 #include <iostream>
-
+#include <unistd.h>
 #include <arpa/inet.h>
 
 using namespace std;
@@ -51,8 +51,8 @@ void ScanHost(string HostToScan, string ArgumentList)
         /* If the current character is a digit, process it */
         if(isdigit(ArgumentList.at(i)) != 0)
         {
-            /* If this is the last digit in the argument string, it is
-             * part of the last port to scan */
+            /* If this is the last digit in the argument string, it
+             * is part of the last port to scan */
             if(i == ArgumentList.length() - 1)
             {
                 /* Get the last port number */
@@ -66,8 +66,9 @@ void ScanHost(string HostToScan, string ArgumentList)
                 {
                     if(PortNumber < 1 || PortNumber > 65535)
                     {
-                        cerr << "Error: " << PortNumber << " is not a"
-                                " valid port number" << endl;
+                        cerr << "Error: " << PortNumber << " is" <<
+                                " not a valid port number" <<
+                                endl;
                     }
                     else
                     {
@@ -79,11 +80,13 @@ void ScanHost(string HostToScan, string ArgumentList)
                  * all of the ports in the range */
                 else
                 {
-                    for(int j = FirstPortInRange; j <= PortNumber; j++)
+                    for(int j = FirstPortInRange; j <= PortNumber;
+                        j++)
                     {
                         if(j < 1 || j > 65535)
                         {
-                            cerr << "Error: " << PortNumber << " is not a"
+                            cerr << "Error: " << PortNumber <<
+                                    " is not a" << 
                                     " valid port number" << endl;
                         }
                         else
@@ -98,9 +101,10 @@ void ScanHost(string HostToScan, string ArgumentList)
              * process it normally */
             else
             {
-                /* We are now reading a port, so set the beginning index
-                 * if we were not previously reading a port, and in all
-                 * cases increment the current port length */
+                /* We are now reading a port, so set the beginning
+                 * index if we were not previously reading a port,
+                 * and in all cases increment the current port
+                 * length */
                 if(ReadingPort == false)
                 {
                     PortBeginningIndex = i;
@@ -110,9 +114,9 @@ void ScanHost(string HostToScan, string ArgumentList)
             }
         }
 
-        /* If the current read character is a comma, we have either just
-         * finished reading a port or a port range, so perform the scan
-         * operation on the port(s) */
+        /* If the current read character is a comma, we have either
+         * just finished reading a port or a port range, so perform
+         * the scan operation on the port(s) */
         else if(ArgumentList.at(i) == ',')
         {
             ReadingPort = false;
@@ -142,8 +146,9 @@ void ScanHost(string HostToScan, string ArgumentList)
                 {
                     if(j < 1 || j > 65535)
                     {
-                        cerr << "Error: " << PortNumber << " is not a"
-                                " valid port number" << endl;
+                        cerr << "Error: " << PortNumber <<
+                                " is not a valid port number" <<
+                                endl;
                     }
                     else
                     {
@@ -155,9 +160,9 @@ void ScanHost(string HostToScan, string ArgumentList)
 
             CurrentPortLength = 0;
         }
-        /* If the current read character is a dash, we are in the middle
-         * of reading a port range, so set the flag for processing a range
-         * and get ready to read another port */
+        /* If the current read character is a dash, we are in the
+         * middle of reading a port range, so set the flag for
+         * processing a range and get ready to read another port */
         else if(ArgumentList.at(i) == '-')
         {
             ReadingPort = false;
@@ -175,10 +180,10 @@ int main(int argc, char *argv[])
 {
     /* If there are less than two arguments, print an error and help
      * message */
-    if(argc != 2)
+    if(argc != 3)
     {
-        cerr << "Error: You must specify an IP address to scan and a list of"
-                " ports" << endl;
+        cerr << "Error: You must specify an IP address to scan" <<
+                " and a list of ports" << endl;
         cerr << "E.g. " << argv[0] << " 127.0.0.1 80" << endl;
         cerr << "     " << argv[0] << " 127.0.0.1 80,443" << endl;
         cerr << "     " << argv[0] << " 127.0.0.1 5-10,80" << endl;
@@ -192,8 +197,8 @@ int main(int argc, char *argv[])
     string ArgumentList = argv[2];
 
     /* Display the host we are scanning */
-    cout << endl << "[==========]     " << HostToScan << "     [======"
-            "====]" << endl;
+    cout << endl << "[==========]     " << HostToScan <<
+            "     [==========]" << endl;
 
     /* Scan the host */
     ScanHost(HostToScan, ArgumentList);

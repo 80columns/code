@@ -31,7 +31,8 @@
         $ChildPIDsLength = count($ChildPIDs);
         for($Index = 0; $Index < $ChildPIDsLength; $Index++)
         {
-            if(pcntl_waitpid($ChildPIDs[$Index], $Status, WNOHANG) != 0)
+            if(pcntl_waitpid($ChildPIDs[$Index], $Status,
+                             WNOHANG) != 0)
             {
                 array_push($FinishedChildren, $Index);
                 socket_shutdown($ConnectedSockets[$Index], 2);
@@ -45,7 +46,8 @@
         for($Index = 0; $Index < $FinishedChildrenLength; $Index++)
         {
             array_splice($ChildPIDs, $FinishedChildren[$Index], 1);
-            array_splice($ConnectedSockets, $FinishedChildren[$Index], 1);
+            array_splice($ConnectedSockets,
+                         $FinishedChildren[$Index], 1);
         }
 
         /* Reset the list of finished children */
@@ -58,14 +60,15 @@
         if(($ConnectedSockets[$ConnectedSocketsLastIndex] = 
             @socket_accept($ServerSocket)) !== false)
         {
-            /* Fork a new process to handle the incoming connection */
+            /* Fork a new process to handle the incoming
+             * connection */
             $PID = pcntl_fork();
 
             /* This is the child process */
             if($PID == 0)
             {
-                /* Unset the signal handler, process the new connection,
-                 * and exit the child process */
+                /* Unset the signal handler, process the new
+                 * connection, and exit the child process */
                 pcntl_signal(SIGINT, SIG_IGN);
                 ProcessClient(
                     $ConnectedSockets[$ConnectedSocketsLastIndex]);
@@ -93,7 +96,8 @@
      * server can exit cleanly */
     function SIGINTHandler($Signal)
     {
-        /* Make external variables available inside the signal handler */
+        /* Make external variables available inside the signal
+         * handler */
         global $ChildPIDs, $ConnectedSockets, $ServerSocket;
 
         print "\n[Server] Waiting for children to exit...\n";
@@ -127,7 +131,8 @@
         $ClientString = "";
 
         /* Receive the client's message */
-        while(($ReadCharacter = socket_read($ConnectedSocket, 1)) != "\n")
+        while(($ReadCharacter = socket_read($ConnectedSocket, 1)) !=
+              "\n")
         {
             $ClientString .= $ReadCharacter;
         }

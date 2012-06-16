@@ -22,7 +22,8 @@ class SubstringSearch {
              * reading */
             while(FileStream.Peek() >= 0) {
 
-                /* Append the next character to the container string */
+                /* Append the next character to the container
+                 * string */
                 Character = Convert.ToChar(FileStream.Read());
                 String.Append(Character);
                 CharacterNumber++;
@@ -35,9 +36,10 @@ class SubstringSearch {
                     string ContainerString = String.ToString();
 
                     /* Compare the two strings */
-                    for(int Index = 0; Index < ContainerString.Length;
-                        Index++) {
-                        if(ContainerString[Index] != Substring[Index]) {
+                    for(int Index = 0;
+                        Index < ContainerString.Length; Index++) {
+                        if(ContainerString[Index] !=
+                           Substring[Index]) {
                             StringsMatch = false;
                         }
                     }
@@ -49,11 +51,13 @@ class SubstringSearch {
                     /* If a match in the file is found, print it */
                     if(StringsMatch == true) {
                         Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.WriteLine("[{0}] (@ characters {1}-{2})" +
-                                          " \"{3}\"",
-                                          FileName, (1 + CharacterNumber -
-                                          ContainerString.Length),
-                                          CharacterNumber, Substring);
+                        Console.WriteLine("[{0}] (@ characters" +
+                                          " {1}-{2}) \"{3}\"",
+                                          FileName,
+                                          (1 + CharacterNumber -
+                                           ContainerString.Length),
+                                          CharacterNumber,
+                                          Substring);
                         Console.ResetColor();
                     }
                 }
@@ -78,8 +82,8 @@ class SubstringSearch {
         if(args.Length < 2) {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Error: You must specify a substring" +
-                              " to search for and at least one file" +
-                              " to search in");
+                              " to search for and at least one" +
+                              " file to search in");
             Console.WriteLine("E.x.: ./SubstringSearch foo bar.txt");
             Console.ResetColor();
             return;

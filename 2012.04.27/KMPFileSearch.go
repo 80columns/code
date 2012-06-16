@@ -39,8 +39,8 @@ import (
 /*
  * [ I ]
  */
-func KMPSearch(Substring string, FileString string, PrefixArray []int,
-               M int) int {
+func KMPSearch(Substring string, FileString string,
+               PrefixArray []int, M int) int {
 
     /* == 1 ==
      * [ I := 0 ]
@@ -160,17 +160,18 @@ func ComputePrefix(Substring string) []int {
 
 /*
  * [ os.Stdout +:= the following text:
- *                 "Usage: ./SubstringSearch [substring] [file(s)]" ]
+ *                 "Usage: ./KMPFileSearch [substring] [file(s)]" ]
  */
 func Usage() {
 
     /*
      * == 1 ==
      * [ os.Stdout +:= the following text:
-     *                 "Usage: ./SubstringSearch [substring] [file(s)]"
+     *                 "Usage: ./KMPFileSearch [substring]" +
+     *                 "[file(s)]"
      *   return ]
      */
-    fmt.Println("Usage: ./SubstringSearch [substring] [file(s)]")
+    fmt.Println("Usage: ./KMPFileSearch [substring] [file(s)]")
 
     return
 }
@@ -334,8 +335,8 @@ func PrintReport(File *os.File, SubstringIndices []int,
 
     /* == 5 ==
      * [ os.Stdout +:= the following text:
-     *                 The contents of File, with all occurrences of the
-     *                 substring in bold
+     *                 The contents of File, with all occurrences of
+     *                 the substring in bold
      *   AllSubstringsPrinted := true
      *   Index := anything
      *   SubstringIndex := anything
@@ -464,7 +465,8 @@ func OpenFile(FileName string) *os.File {
 
     /* == 1 ==
      * [ File := a file pointer to the file located at FileName
-     *   Error := the error that occurred while opening FileName, if any ]
+     *   Error := the error that occurred while opening FileName, if
+     *            any ]
      */
     File, OpenError := os.Open(FileName)
 
@@ -472,8 +474,9 @@ func OpenFile(FileName string) *os.File {
      * [ if Error != nil ->
      *       os.Stderr +:= the following text:
      *                     "System Error: [" + OpenError + "]\n" +
-     *                     "Program Error: [" + "The file " + FileName +
-     *                     " could not be opened for reading" + "]\n"
+     *                     "Program Error: [" + "The file " +
+     *                     FileName + " could not be opened for" +
+     *                     " reading" + "]\n"
      *       File := nil
      *
      *   else ->
@@ -507,8 +510,8 @@ func OpenFile(FileName string) *os.File {
  *                 "========================================" +
  *                 "========================================\n\n"
  *
- *   os.Stderr +:= for each file read error that occurs, the following
- *                 text:
+ *   os.Stderr +:= for each file read error that occurs, the
+ *                 following text:
  *                 "System Error: [" + (error) + "]\n" +
  *                 "Program Error: [" +
  *                 "Error reading from file " + FileName +
@@ -569,27 +572,28 @@ func ProcessFile(Substring string, FileName string) {
      *   CurrentFileOffset := anything
      *   TestByte := TestByte with some indices changed
      *   FileString := anything
-     *   SubstringIndices := SubstringIndices with some indices changed ]
+     *   SubstringIndices := SubstringIndices with some indices
+     *                       changed ]
      */
     for ReadingFile == true {
 
         /* == 4 Body ==
          * [ if ReadError != nil ->
          *       os.Stderr +:= the following text:
-         *                     "System Error: [" + ReadError + "]\n" +
-         *                     "Program Error: [" +
-         *                     "Error reading from file " + FileName +
-         *                     "]\n"
+         *                     "System Error: [" + ReadError +
+         *                     "]\n" + "Program Error: [" +
+         *                     "Error reading from file " +
+         *                     FileName + "]\n"
          *
          *   else ->
          *       I
          *
          *   if EOFTestError != io.EOF AND EOFTestError != nil ->
          *       os.Stderr +:= the following text:
-         *                     "System Error: [" + EOFTestError + "]\n" +
-         *                     "Program Error: [" +
-         *                     "Error reading from file " + FileName +
-         *                     "]\n"
+         *                     "System Error: [" + EOFTestError +
+         *                     "]\n" + "Program Error: [" +
+         *                     "Error reading from file " +
+         *                     FileName + "]\n"
          *
          *   else if EOFTestError == io.EOF ->
          *       ReadingFile := false
@@ -599,15 +603,16 @@ func ProcessFile(Substring string, FileName string) {
          *
          *   In any case ->
          *       BytesRead := the number of bytes read from File
-         *       ReadError := the error that occurred while reading File,
-         *                    if any
-         *       EOFTestError := the error that occurred while reading
-         *                       File, if any
+         *       ReadError := the error that occurred while reading
+         *                    File, if any
+         *       EOFTestError := the error that occurred while
+         *                       reading File, if any
          *       File := File advanced to a new, positive offset
          *       FileBytes := the bytes read from File
          *       TestByte := a byte read from File
          *       FileString := FileBytes converted to a string
-         *       SubstringIndices := SubstringIndices with some indices changed
+         *       SubstringIndices := SubstringIndices with some
+         *                           indices changed
          *       Index := 0
          *       M := 0
          *       CurrentFileOffset := anything ]
@@ -627,10 +632,10 @@ func ProcessFile(Substring string, FileName string) {
         /* == 4.2 ==
          * [ if ReadError != nil ->
          *       os.Stderr +:= the following text:
-         *                     "System Error: [" + ReadError + "]\n" +
-         *                     "Program Error: [" +
-         *                     "Error reading from file " + FileName +
-         *                     "]\n"
+         *                     "System Error: [" + ReadError +
+         *                     "]\n" + "Program Error: [" +
+         *                     "Error reading from file " +
+         *                     FileName + "]\n"
          *
          *   else ->
          *       I ]
@@ -641,8 +646,8 @@ func ProcessFile(Substring string, FileName string) {
         }
 
         /* == 4.3 ==
-         * [ EOFTestError := the error that occurred while reading File,
-         *                   if any
+         * [ EOFTestError := the error that occurred while reading
+         *                   File, if any
          *   File := File advanced by one byte
          *   TestByte := the byte read from File ]
          */
@@ -651,16 +656,17 @@ func ProcessFile(Substring string, FileName string) {
         /* == 4.4 ==
          * [ if EOFTestError != io.EOF AND EOFTestError != nil ->
          *       os.Stderr +:= the following text:
-         *                     "System Error: [" + EOFTestError + "]\n" +
-         *                     "Program Error: [" +
-         *                     "Error reading from file " + FileName +
-         *                     "]\n"
+         *                     "System Error: [" + EOFTestError +
+         *                     "]\n" + "Program Error: [" +
+         *                     "Error reading from file " +
+         *                     FileName + "]\n"
          *
          *   else if EOFTestError == io.EOF ->
          *       ReadingFile := false
          *
          *   else ->
-         *       File := File seek'd backward by len(Substring) bytes ]
+         *       File := File seek'd backward by len(Substring)
+         *               bytes ]
          */
         if EOFTestError != io.EOF && EOFTestError != nil {
             PrintSystemError(EOFTestError)
@@ -673,15 +679,16 @@ func ProcessFile(Substring string, FileName string) {
 
         /* == 4.5 ==
          * [ Index := -1
-         *   SubstringIndices := SubstringIndices with some indices changed
+         *   SubstringIndices := SubstringIndices with some indices
+         *                       changed
          *   M := anything ]
          */
         for Index != -1 {
 
             /* == 4.5 Body ==
              * [ if Index != -1 ->
-             *       SubstringIndices := SubstringIndices with some indices
-             *                           changed
+             *       SubstringIndices := SubstringIndices with some
+             *                           indices changed
              *
              *   else ->
              *       I
@@ -698,8 +705,8 @@ func ProcessFile(Substring string, FileName string) {
 
             /* == 4.5.2 ==
              * [ if Index != -1 ->
-             *       SubstringIndices := SubstringIndices with some indices
-             *                           changed
+             *       SubstringIndices := SubstringIndices with some
+             *                           indices changed
              *
              *   else ->
              *       I ]
@@ -738,7 +745,8 @@ func ProcessFile(Substring string, FileName string) {
      *                 "========================================\n" +
      *                 "== End == " + FileName + " ==\n" +
      *                 "========================================" +
-     *                 "========================================\n\n" ]
+     *                 "========================================" +
+     *                 "\n\n" ]
      */
     PrintHeader(FileName)
     PrintReport(File, SubstringIndices, len(Substring))
@@ -763,7 +771,8 @@ func ProcessFile(Substring string, FileName string) {
  *                     "]\n"
  *
  *       os.Stdout +:= the following text:
- *                     "Usage: ./SubstringSearch [substring] [file(s)]"
+ *                     "Usage: ./KMPFileSearch [substring]" +
+ *                     " [file(s)]"
  *
  *   else ->
  *       os.Stdout +:= for each input file specified in the command
@@ -774,8 +783,8 @@ func ProcessFile(Substring string, FileName string) {
  *                     "== Begin == " + (file name) + " ==\n" +
  *                     "========================================" +
  *                     "========================================\n" +
- *                     The contents of the file, with all occurrences of
- *                     the substring in bold +
+ *                     The contents of the file, with all occurrences
+ *                     of the substring in bold +
  *                     "========================================" +
  *                     "========================================\n" +
  *                     "== End == " + (file name) + " ==\n" +
@@ -786,8 +795,9 @@ func ProcessFile(Substring string, FileName string) {
  *                     arguments that could not be successfully
  *                     opened, the following text:
  *                     "System Error: [" + (error) + "]\n" +
- *                     "Program Error: [" + "The file " + (file name) +
- *                     " could not be opened for reading" + "]\n"
+ *                     "Program Error: [" + "The file " +
+ *                     (file name) + " could not be opened for" +
+ *                     " reading" + "]\n"
  *
  *                     for each read error that occurs in each file
  *                     specified in the command line arguments, the
@@ -807,7 +817,8 @@ func main() {
      *                     "]\n"
      *
      *       os.Stdout +:= the following text:
-     *                     "Usage: ./SubstringSearch [substring] [file(s)]"
+     *                     "Usage: ./KMPFileSearch [substring]" +
+     *                     " [file(s)]"
      *       return
      *
      *   else ->
@@ -833,8 +844,8 @@ func main() {
      *                 "== Begin == " + (file name) + " ==\n" +
      *                 "========================================" +
      *                 "========================================\n" +
-     *                 The contents of the file, with all occurrences of
-     *                 Substring in bold +
+     *                 The contents of the file, with all occurrences
+     *                 of Substring in bold +
      *                 "========================================" +
      *                 "========================================\n" +
      *                 "== End == " + (file name) + " ==\n" +
@@ -845,8 +856,9 @@ func main() {
      *                 arguments that could not be successfully
      *                 opened, the following text:
      *                 "System Error: [" + (error) + "]\n" +
-     *                 "Program Error: [" + "The file " + (file name) +
-     *                 " could not be opened for reading" + "]\n"
+     *                 "Program Error: [" + "The file " +
+     *                 (file name) + " could not be opened for" +
+     *                 " reading" + "]\n"
      *
      *                 for each read error that occurs in each file
      *                 specified in the command line arguments, the

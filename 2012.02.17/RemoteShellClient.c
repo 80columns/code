@@ -18,8 +18,8 @@ int main(int argc, char **argv)
 {
     if(argc != 3)
     {
-        fprintf(stderr, "Error: Supply an IP address and port to connect"
-                        " to as two arguments\n");
+        fprintf(stderr, "Error: Supply an IP address and port to"
+                        " connect to as two arguments\n");
         fprintf(stderr, "E.g. %s 127.0.0.1 80\n", argv[0]);
         return 1;
     }
@@ -100,7 +100,8 @@ void ProcessCommands(int ClientSocket)
             {
                 CommandStringLength *= 2;
                 CommandString =
-                    (char *)realloc(CommandString, CommandStringLength \
+                    (char *)realloc(CommandString,
+                                    CommandStringLength \
                                     * sizeof(char));
             }
 
@@ -127,7 +128,8 @@ void ProcessCommands(int ClientSocket)
                 ResponseStringLength *= 2;
                 ResponseString =
                     (char *)realloc(ResponseString,
-                                    ResponseStringLength * sizeof(char));
+                                    ResponseStringLength *
+                                    sizeof(char));
             }
 
             strncat(ResponseString, &ReceivedCharacter, 1);
@@ -156,8 +158,8 @@ char ReceiveCharacter(int ClientSocket)
 {
     char ReceivedCharacter;
 
-    if(recv(ClientSocket, &ReceivedCharacter, sizeof(ReceivedCharacter), \
-            0) == -1)
+    if(recv(ClientSocket, &ReceivedCharacter,
+            sizeof(ReceivedCharacter), 0) == -1)
     {
         perror("");
         fprintf(stderr, "Error receiving data from server\n");

@@ -86,7 +86,8 @@ class FileDownloader
 
         Data.SetServer(UserUrl.getHost());
         Data.SetFilePath(UserUrl.getFile());
-        Data.SetOutputFileName(Url.substring(Url.lastIndexOf('/') + 1,
+        Data.SetOutputFileName(Url.substring(Url.lastIndexOf('/')
+                                             + 1,
                                              Url.length()));
 
         return Data;
@@ -124,19 +125,22 @@ class FileDownloader
                 new BufferedInputStream(new URL(Url).openStream());
 
             while((NumReadBytes =
-                       RemoteFileReader.read(ReadBytes, 0, 4*1024)) != -1)
+                   RemoteFileReader.read(ReadBytes, 0, 4*1024))
+                  != -1)
             {
                 FileOutputStream.write(ReadBytes, 0, NumReadBytes);
                 TotalBytesRead += NumReadBytes;
             }
 
-            System.out.println(Data.GetOutputFileName() + " saved [" +
+            System.out.println(Data.GetOutputFileName() +
+                               " saved [" +
                                (TotalBytesRead/1024) + "K]");
 
         }
         catch(MalformedURLException e)
         {
-            System.err.println("Error: The specified URL is invalid");
+            System.err.println("Error: The specified URL is" +
+                               " invalid");
         }
         catch(IOException e)
         {
@@ -157,8 +161,8 @@ class FileDownloader
             }
             catch(IOException e)
             {
-                System.err.println("Error: Could not close one or more" +
-                                   " stream objects");
+                System.err.println("Error: Could not close one or" +
+                                   " more stream objects");
                 return;
             }
         }
@@ -168,7 +172,8 @@ class FileDownloader
     {
         if(args.length < 1)
         {
-            System.err.println("Error: Provide at least one argument");
+            System.err.println("Error: Provide at least one" +
+                               " url as an argument");
             return;
         }
 
