@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys, io, os
+import sys
 
 Base64Values = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', \
                 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', \
