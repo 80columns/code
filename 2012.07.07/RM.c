@@ -47,7 +47,13 @@ void RemoveFile(char *File)
         {
             char FullDirPath[PATH_MAX];
             char FullFilePath[PATH_MAX];
-            realpath(File, FullDirPath);
+
+            if(realpath(File, FullDirPath) == NULL)
+            {
+                perror("Error:\n\t");
+                return;
+            }
+
             while((Entry = readdir(Directory)) != NULL)
             {
                 if(strcmp(Entry->d_name, ".") != 0 && \
@@ -60,7 +66,13 @@ void RemoveFile(char *File)
                     RemoveFile(FullFilePath);
                 }
             }
-            rmdir(File);
+
+            if(rmdir(File) == -1)
+            {
+                perror("Error\n\t");
+                return;
+            }
+
             fprintf(stdout, "Directory %s removed\n", File);
             
             if(closedir(Directory) == -1)
