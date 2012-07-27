@@ -15,7 +15,7 @@ void RemoveFile(char *File)
     struct stat FileStats;
     int Status;
 
-    /* Get the file/folder's information */
+    /* Get the file's information */
     if(lstat(File, &FileStats) == -1)
     {    
         perror("Error:\n\t");
