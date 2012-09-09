@@ -69,7 +69,8 @@ void RemoveFile(char *File)
                 if(strcmp(Entry->d_name, ".") != 0 && \
                    strcmp(Entry->d_name, "..") != 0)
                 {
-                    /* Get the full file path of the entry and remove it */
+                    /* Get the full file path of the entry and remove
+                     * it */
                     memset(FullFilePath, 0, PATH_MAX);
                     strcat(FullFilePath, FullDirPath);
                     strcat(FullFilePath, "/");
