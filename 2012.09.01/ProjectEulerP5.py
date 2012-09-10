@@ -30,11 +30,10 @@ def main():
         # We can factor out 8 because 16 % 8 = 0
         # We can factor out 9 because 18 % 9 = 0
         # We can factor out 10 because 20 % 10 = 0
-        # We can factor out 12 because (20 * 18) % 12 = 0
-        # We can factor out 15 because (20 * 18) % 15 = 0
-        if I % 11 == 0 and I % 13 == 0 and I % 14 == 0 \
-            and I % 16 == 0 and I % 17 == 0 and \
-            I % 18 == 0 and I % 19 == 0 and I % 20 == 0:
+        # We can factor out 20 because we know that I % 20 = 0
+        if I % 11 == 0 and I % 12 == 0 and I % 13 == 0 and \
+           I % 14 == 0 and I % 15 == 0 and I % 16 == 0 and \
+           I % 17 == 0 and I % 18 == 0 and I % 19 == 0:
                 print(I)
                 break
 
