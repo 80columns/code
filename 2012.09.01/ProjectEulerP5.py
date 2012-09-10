@@ -12,12 +12,12 @@ of the numbers from 1 to 20?
 
 def main():
 
-    # Start at 0
-    Start = 20
+    # Start at 20
+    I = 20
 
     while 1:
         # Increment by the largest factor
-        Start += 20
+        I += 20
 
         # The answer must be divisible by 1 through 20:
         # We can factor out 1 trivially
@@ -32,10 +32,10 @@ def main():
         # We can factor out 10 because 20 % 10 = 0
         # We can factor out 12 because (20 * 18) % 12 = 0
         # We can factor out 15 because (20 * 18) % 15 = 0
-        if Start % 11 == 0 and Start % 13 == 0 and Start % 14 == 0 \
-            and Start % 16 == 0 and Start % 17 == 0 and \
-            Start % 18 == 0 and Start % 19 == 0 and Start % 20 == 0:
-                print(Start)
+        if I % 11 == 0 and I % 13 == 0 and I % 14 == 0 \
+            and I % 16 == 0 and I % 17 == 0 and \
+            I % 18 == 0 and I % 19 == 0 and I % 20 == 0:
+                print(I)
                 break
 
 if __name__ == "__main__":
