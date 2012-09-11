@@ -36,8 +36,7 @@ int IsPalindrome(int Integer) {
     }
 }
 
-int main()
-{
+int main() {
     int I = 0, J = 0, Product = 0, LargestPalindrome = 0;
     int* Palindromes = NULL;
     int ArraySize = 0;
@@ -59,10 +58,8 @@ int main()
 
     /* Get the largest palindrome out of the array */
     LargestPalindrome = Palindromes[0];
-    for(I = 1; I < ArraySize; I++)
-    {
-        if(Palindromes[I] > LargestPalindrome)
-        {
+    for(I = 1; I < ArraySize; I++) {
+        if(Palindromes[I] > LargestPalindrome) {
             LargestPalindrome = Palindromes[I];
         }
     }
