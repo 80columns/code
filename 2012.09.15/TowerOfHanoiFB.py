@@ -52,13 +52,11 @@ Sample Output #00:
 
 
 Sample Input #01:
-
 6 4
 4 2 4 3 1 1
 1 1 1 1 1 1
 
 Sample Output #01:
-
 5
 3 1
 4 3
