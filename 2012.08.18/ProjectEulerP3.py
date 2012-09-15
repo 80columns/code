@@ -13,7 +13,6 @@ import math
 
 # Returns the prime factors of an odd integer in a list
 def GetPrimeFactors(Integer):
-
     Limit = math.floor(math.sqrt(Integer))
     Divisor = 3
     IntegerIsPrime = True
@@ -40,7 +39,6 @@ def GetPrimeFactors(Integer):
     return PrimeFactors
 
 def main():
-
     Number = 600851475143
     PrimeFactors = []
 
