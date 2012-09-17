@@ -102,6 +102,12 @@ def main():
     Config = sys.stdin.readline().rstrip('\n').split(" ")
     EndConfig = sys.stdin.readline().rstrip('\n').split(" ")
 
+    # If the start and end configurations are the same, print
+    # 0 moves and exit
+    if Counter(Config) == Counter(EndConfig):
+        print("0")
+        return
+
     Configs = []
     Config = [int(I) for I in Config]
     EndConfig = [int(I) for I in EndConfig]
