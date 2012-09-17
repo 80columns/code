@@ -71,7 +71,6 @@ and outputs to stdout. If you are using "Java", the classname is
 '''
 
 import sys
-from collections import Counter
 
 class ReachedFinalConfig(Exception):
     pass
@@ -96,6 +95,20 @@ class ConfigNode:
     def GetParentIndex(self):
         return self.ParentIndex
 
+# This function takes two configurations
+# and returns whether they are equivalent
+def CompareConfigs(Config1, Config2):
+    # Compare the config lengths first
+    if len(Config1) != len(Config2):
+        return False
+
+    # Compare each individual element
+    for I in range(0, len(Config1)):
+        if Config1[I] != Config2[I]:
+            return False
+
+    return True
+
 def main():
     # Read the three input lines from stdin
     NK = sys.stdin.readline().rstrip('\n')
@@ -104,7 +117,7 @@ def main():
 
     # If the start and end configurations are the same, print
     # 0 moves and exit
-    if Counter(Config) == Counter(EndConfig):
+    if CompareConfigs(Config, EndConfig) == True:
         print("0")
         return
 
@@ -167,8 +180,8 @@ def main():
                             # reached, add the final configuration to
                             # the list of configurations and stop
                             # creating new configurations
-                            if Counter(NewConfig) == \
-                               Counter(EndConfig):
+                            if CompareConfigs(NewConfig, EndConfig) \
+                               == True:
 
                                 Configs.append( \
                                     ConfigNode(NewConfig[:], \
@@ -180,14 +193,10 @@ def main():
                             # configuration. This prevents duplicate
                             # configurations from being created over
                             # and over again.
-                            elif Counter(NewConfig) != \
-                                 (
-                                     Counter( \
-                                         Configs[ \
-                                             Configs[ParentIndex].\
-                                                 GetParentIndex()].\
-                                                     GetConfig()[:])
-                                 ):
+                            elif CompareConfigs(NewConfig, \
+                                 Configs[Configs[ParentIndex].\
+                                 GetParentIndex()].GetConfig()[:]) \
+                                 == False:
                                 # Append a new configuration to the
                                 # list
                                 Configs.append(ConfigNode( \
