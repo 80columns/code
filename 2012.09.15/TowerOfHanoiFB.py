@@ -169,9 +169,24 @@ def main():
                                     ParentIndex))
                                 raise ReachedFinalConfig
 
-                            # Append a new configuration to the list
-                            Configs.append(ConfigNode(NewConfig[:], \
-                                                      ParentIndex))
+                            # Make sure that the new configuration is
+                            # not the same as its grandparent's
+                            # configuration. This prevents duplicate
+                            # configurations from being created over
+                            # and over again.
+                            elif Counter(NewConfig) != \
+                                 (
+                                     Counter( \
+                                         Configs[ \
+                                             Configs[ParentIndex].\
+                                                 GetParentIndex()].\
+                                                     GetConfig()[:])
+                                 ):
+                                # Append a new configuration to the
+                                # list
+                                Configs.append(ConfigNode( \
+                                                   NewConfig[:],
+                                                   ParentIndex))
 
             # Start creating configurations from the next
             # configuration in the list
