@@ -109,6 +109,16 @@ def CompareConfigs(Config1, Config2):
 
     return True
 
+# This function determines whether a given
+# configuration is already in the list of
+# configurations
+def ConfigAlreadyExists(NewConfig, Configs):
+    for I in range(0, len(Configs)):
+        if Configs[I].GetConfig() == NewConfig:
+            return True
+
+    return False
+
 def main():
     # Read the three input lines from stdin
     NK = sys.stdin.readline().rstrip('\n')
@@ -189,17 +199,15 @@ def main():
                                 raise ReachedFinalConfig
 
                             # Make sure that the new configuration is
-                            # not the same as its grandparent's
-                            # configuration. This prevents duplicate
-                            # configurations from being created over
-                            # and over again.
-                            elif CompareConfigs(NewConfig, \
-                                 Configs[Configs[ParentIndex].\
-                                 GetParentIndex()].GetConfig()[:]) \
-                                 == False:
-                                # Append a new configuration to the
-                                # list
-                                Configs.append(ConfigNode( \
+                            # not the same as any previous
+                            # configurations. This prevents duplicate
+                            # configurations from being created.
+                            else:
+                                if ConfigAlreadyExists(NewConfig,
+                                   Configs) == False:
+                                    # Append a new configuration to
+                                    # the list
+                                    Configs.append(ConfigNode( \
                                                    NewConfig[:],
                                                    ParentIndex))
 
