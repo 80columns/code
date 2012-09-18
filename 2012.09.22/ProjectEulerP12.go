@@ -86,7 +86,6 @@ func CountDivisors(Integer float64) int {
 }
 
 func main() {
-
     /* Start with the 8th triangle number */
     var I float64 = 8
     var NumDivisors int = 0
