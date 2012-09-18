@@ -70,6 +70,7 @@ and outputs to stdout. If you are using "Java", the class name is
 "Solution"
 '''
 
+import os
 import sys
 
 class ReachedFinalConfig(Exception):
