@@ -11,8 +11,8 @@ transform from the initial to final configuration. You are required to
 do the transformations in minimal number of moves.
 
 A move consists of picking the topmost disc of any one of the pegs and
-placing it on top of anyother peg. At anypoint of time, the decreasing
-radius property of all the pegs must be maintained.
+placing it on top of any other peg. At any point of time, the
+decreasing radius property of all the pegs must be maintained.
 
 
 Constraints:
@@ -66,7 +66,7 @@ Sample Output #01:
 
 
 NOTE: You need to write the full code taking all inputs from stdin
-and outputs to stdout. If you are using "Java", the classname is
+and outputs to stdout. If you are using "Java", the class name is
 "Solution"
 '''
 
