@@ -75,46 +75,12 @@ import sys
 class ReachedFinalConfig(Exception):
     pass
 
-class ConfigNode:
-    Config = []
-    ParentIndex = 0
-
-    def __init__(self, NewConfig, NewParentIndex):
-        self.Config = NewConfig
-        self.ParentIndex = NewParentIndex
-
-    def SetConfig(self, NewConfig):
-        self.Config = NewConfig
-
-    def GetConfig(self):
-        return self.Config
-
-    def SetParentIndex(self, NewParentIndex):
-        self.ParentIndex = NewParentIndex
-
-    def GetParentIndex(self):
-        return self.ParentIndex
-
-# This function takes two configurations
-# and returns whether they are equivalent
-def CompareConfigs(Config1, Config2):
-    # Compare the config lengths first
-    if len(Config1) != len(Config2):
-        return False
-
-    # Compare each individual element
-    for I in range(0, len(Config1)):
-        if Config1[I] != Config2[I]:
-            return False
-
-    return True
-
 # This function determines whether a given
 # configuration is already in the list of
 # configurations
 def ConfigAlreadyExists(NewConfig, Configs):
-    for I in range(0, len(Configs)):
-        if Configs[I].GetConfig() == NewConfig:
+    for I in Configs.values():
+        if NewConfig in I:
             return True
 
     return False
@@ -125,15 +91,16 @@ def main():
     Config = sys.stdin.readline().rstrip('\n').split(" ")
     EndConfig = sys.stdin.readline().rstrip('\n').split(" ")
 
-    Configs = []
+    Configs = {}
     Config = [int(I) for I in Config]
     EndConfig = [int(I) for I in EndConfig]
     NumDiscs = int(NK.split(" ")[0])
     NumPegs = int(NK.split(" ")[1])
     ParentIndex = 0
+    CurrentIndex = 1
 
     # Create the first node in the config list
-    Configs.append(ConfigNode(Config, -1))
+    Configs[0] = (Config, -1)
 
     # Until the final configuration is reached
     #     For each disc in the config from left to right:
@@ -147,7 +114,7 @@ def main():
     #             disc moved to that peg
     try:
         while 1:
-            Config = Configs[ParentIndex].GetConfig()[:]
+            Config = Configs[ParentIndex][0][:]
 
             for I in range(0, NumDiscs):
                 DiscIsTopDisc = True
@@ -184,12 +151,10 @@ def main():
                             # reached, add the final configuration to
                             # the list of configurations and stop
                             # creating new configurations
-                            if CompareConfigs(NewConfig, EndConfig) \
-                               == True:
-
-                                Configs.append( \
-                                    ConfigNode(NewConfig[:], \
-                                    ParentIndex))
+                            if NewConfig == EndConfig:
+                                Configs[CurrentIndex] = \
+                                    (NewConfig[:], ParentIndex)
+                                CurrentIndex += 1
                                 raise ReachedFinalConfig
 
                             # Make sure that the new configuration is
@@ -201,9 +166,9 @@ def main():
                                    Configs) == False:
                                     # Append a new configuration to
                                     # the list
-                                    Configs.append(ConfigNode( \
-                                                   NewConfig[:],
-                                                   ParentIndex))
+                                    Configs[CurrentIndex] = \
+                                        (NewConfig[:], ParentIndex)
+                                    CurrentIndex += 1
 
             # Start creating configurations from the next
             # configuration in the list
@@ -223,8 +188,8 @@ def main():
     Moves = ""
     while Index != 0:
         NumMoves += 1
-        Config1 = Configs[Index].GetConfig()
-        Config2 = Configs[Configs[Index].GetParentIndex()].GetConfig()
+        Config1 = Configs[Index][0]
+        Config2 = Configs[Configs[Index][1]][0]
 
         # Find the move that was made between the two configurations
         # by comparing the peg numbers and finding the two that aren't
@@ -234,7 +199,7 @@ def main():
                 Moves = str(Config2[I]) + " " + str(Config1[I]) \
                         + "\n" + Moves
 
-        Index = Configs[Index].GetParentIndex()
+        Index = Configs[Index][1]
 
     Moves = Moves.rstrip('\n')
 
