@@ -53,12 +53,14 @@ using namespace std;
  * binary tree. A two-dimensional vector is used to store the
  * triangle - the first index stores the node's value, the second
  * index stores the vector index of the node's left child, and the
- * third index stores the vector index of the node's right child. */
+ * third index stores the vector index of the node's right child.
+ */
 int GetLongestPath(vector< vector<int> > Triangle, int CurrentIndex) {
     /* First check to make sure that the node has children. If it
      * doesn't, then return the node's value. If it does, calculate
      * the longest paths for its two children and then return
-     * the value of the longer path plus the node's value. */
+     * the value of the longer path plus the node's value.
+     */
     if(Triangle[CurrentIndex][1] >= Triangle.size()) {
         return Triangle[CurrentIndex][0];
     }
