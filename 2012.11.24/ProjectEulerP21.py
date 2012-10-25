@@ -144,13 +144,13 @@ def main():
         NumberList.append(SumOfProperDivisors(i, PrimesList))
 
     # Find the amicable pairs and sum them
-    #for i in range(3, len(NumberList)):
     for i in NumberList:
         if i < len(NumberList):
             if i != (Index + 3) and (Index + 3) == NumberList[i - 3]:
                 Answer += (i + Index + 3)
         Index += 1
 
+    # Print the answer
     Answer = Answer // 2
     print(Answer)
 
