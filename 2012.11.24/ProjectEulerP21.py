@@ -32,9 +32,9 @@ import itertools
 # This function determines if Integer is prime by looking for divisors
 # up to its square root
 def IsPrime(Integer):
-    SquareRoot = math.floor(math.sqrt(Integer))
+    SquareRoot = math.ceil(math.sqrt(Integer))
 
-    for i in range(3, SquareRoot+1):
+    for i in range(3, SquareRoot):
         if Integer % i == 0:
             return False
 
@@ -82,18 +82,17 @@ def SumOfProperDivisors(Number, PrimesList):
     FindingPrimeFactors = True
     Sum = 1
     Index = 0
-    Temp = Number
 
     # First get the prime factors of the number
     while FindingPrimeFactors == True:
         DividingPrimeFactor = True
 
         while DividingPrimeFactor == True:
-            if Temp % PrimesList[Index] == 0:
+            if Number % PrimesList[Index] == 0:
                 PrimeFactors.append(PrimesList[Index])
-                Temp = Temp // PrimesList[Index]
+                Number = Number // PrimesList[Index]
 
-                if Temp == 1:
+                if Number == 1:
                     FindingPrimeFactors = False
 
             else:
