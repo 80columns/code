@@ -45,20 +45,20 @@ def IsPrime(Integer):
 def GeneratePrimes(Limit):
     PrimesList = [2]
     FoundPrime = False
-    Difference = 1
+    Offset = 1
     PossiblyPrime = 0
     Index = 1
 
     while PossiblyPrime < Limit:
         while FoundPrime == False:
-            PossiblyPrime = (2*Index) + Difference
+            PossiblyPrime = (2*Index) + Offset
 
             if IsPrime(PossiblyPrime) == True:
                 FoundPrime = True
                 PrimesList.append(PossiblyPrime)
                 Index += 1
             else:
-                Difference += 2
+                Offset += 2
 
         FoundPrime = False
 
