@@ -66,6 +66,8 @@ def main():
                 if (i - j) in AbundantNumbers:
                     IsSumOfAbundantNumbers = True
                     break
+            else:
+                break
         if IsSumOfAbundantNumbers == False:
             Answer += i
 
