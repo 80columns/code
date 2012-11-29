@@ -47,10 +47,10 @@ int Factorial(int Integer) {
     }
 }
 
-/* This function returns the Nth lexographic permutation of the digits
- * in Digits[].
+/* This function returns the Nth lexicographic permutation of the
+ * digits in Digits[].
  */
-unsigned long long int GetLexographicPermutation(int Digits[], \
+unsigned long long int GetLexicographicPermutation(int Digits[], \
                                                  int NumDigits, \
                                                  int N) {
     unsigned long long int NthPermutation = 0;
@@ -96,7 +96,7 @@ int main() {
     int N = 1000000;
     unsigned long long int Answer = 0;
 
-    Answer = GetLexographicPermutation(Digits, NumDigits, N);
+    Answer = GetLexicographicPermutation(Digits, NumDigits, N);
 
     /* Print the answer */
     printf("%llu\n", Answer);
