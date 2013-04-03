@@ -24,8 +24,8 @@ my $DistinctTerms = ();
 
 for($a = 2; $a <= 100; $a++) {
     for($b = 2; $b <= 100; $b++) {
-        my $base = Math::BigFloat->new($a);
-        $Term = $base->bpow($b);
+        my $Base = Math::BigFloat->new($a);
+        $Term = $Base->bpow($b);
 
         $DistinctTerms{$Term} = 1;
     }
