@@ -1,9 +1,9 @@
 '''
 Sample input:
-101,5,87,567,90,6,10,82,405,15,520,30,16,10,7,167,25,99
+101,87,5,567,90
 
 Sample output:
-[5, 6, 7, 10, 10, 15, 16, 25, 30, 82, 87, 90, 99, 101, 167, 405, 520, 567]
+[5, 87, 90, 101, 567]
 '''
 
 import sys
@@ -21,15 +21,15 @@ def main():
         print(numbers)
         
     except:
-        print('\nUsage: specify a comma-separated list of numbers to sort, e.g.:')
-        print('python main.py 101,5,87,567,90,6,10,82,405,15,520,30,16,10,7,167,25,99\n')
+        print('\nUsage: specify a comma-separated list of numbers, e.g.:')
+        print('python main.py 101,87,5,567,90\n')
 
 def LinearSort(numbers):
     smallest = largest = numbers[0]
-    lookup = {}
+    lookup = {numbers[0]:1}
     index = 0
 
-    for x in range(0, len(numbers)):
+    for x in range(1, len(numbers)):
         if numbers[x] in lookup:
             lookup[numbers[x]] += 1
         else:
