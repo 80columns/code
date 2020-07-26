@@ -11,17 +11,16 @@ import sys
 def main():
     try:
         if len(sys.argv) != 2:
-            print(f'\nError: input numbers specified in an invalid format')
+            print(f'\nError: invalid input format')
             raise ValueError
 
         numbers = [int(x) for x in sys.argv[1].split(',')]
 
         LinearSort(numbers)
-
         print(numbers)
         
     except:
-        print('\nUsage: specify a comma-separated list of numbers, e.g.:')
+        print('\nUsage: pass a comma-separated number list, e.g.:')
         print('python main.py 101,87,5,567,90\n')
 
 def LinearSort(numbers):
