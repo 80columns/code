@@ -1,0 +1,4 @@
+# Added for dotnet core projects
+*/bin/*
+*/obj/*
+*/.vscode/*
