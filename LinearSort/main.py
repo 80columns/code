@@ -4,6 +4,19 @@ Sample input:
 
 Sample output:
 [5, 87, 90, 101, 567]
+
+Note:
+Sorting numbers in linear time is only effective when the range M
+from the smallest to the largest number in the list is not
+significantly greater than the count of numbers N in the list.
+The program below runs in O(N + M) time, but if M is very large
+then the number of operations executed becomes very inefficient.
+This is why Quicksort is typically used by default much more often
+than Heapsort, even though Quicksort is O(n^2) and Heapsort
+is O(n*log(n)).
+
+See https://www.cs.auckland.ac.nz/software/AlgAnim/qsort3.html
+for further analysis on this concept.
 '''
 
 import sys
