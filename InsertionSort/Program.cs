@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Sample input:
+ * 1,8,8,73,0,12,2348,92,83
+ *
+ * Sample output:
+ * 0,1,8,8,12,73,83,92,2348 
+ */
+
+using System;
 using System.Linq;
 
 namespace InsertionSort {
