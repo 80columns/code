@@ -29,7 +29,7 @@ namespace InsertionSort {
 
         static void PrintError() {
             Console.WriteLine("Error: this program can be run by specifying a single argument as a list of comma-separated numbers");
-            Console.WriteLine(".\\quicksort.exe '1,8,8,73,0,12,2348,92,83'");
+            Console.WriteLine(".\\insertionsort.exe '1,8,8,73,0,12,2348,92,83'");
         }
 
         static void Sort(long[] Input) {
