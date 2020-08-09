@@ -29,7 +29,10 @@ namespace Heapsort {
             }
         }
  
-        static void PrintError(string Message, bool Print_Usage = false) {
+        static void PrintError(
+            string Message,
+            bool Print_Usage = false
+        ) {
             Console.WriteLine($"Error: {Message}");
 
             if (Print_Usage == true) {
@@ -50,7 +53,7 @@ namespace Heapsort {
             }
         }
 
-        // Create a max-heap from the input array
+        // create a max-heap from the input array
         static void Heapify(long[] Input) {
             var i = 0;
             var Swapped = false;
@@ -91,9 +94,12 @@ namespace Heapsort {
             }
         }
 
-        // Sift the value at the top of the heap down to
+        // sift the value at the top of the heap down to
         // restore the max-heap property
-        static void SiftDown(long[] Input, int Limit) {
+        static void SiftDown(
+            long[] Input,
+            int Limit
+        ) {
             var i = 0;
 
             while (2*i + 1 < Limit) {
@@ -122,7 +128,11 @@ namespace Heapsort {
             }
         }
 
-        static bool Swap(long[] Input, int Index1, int Index2) {
+        static bool Swap(
+            long[] Input,
+            int Index1,
+            int Index2
+        ) {
             var Swap = Input[Index1];
             Input[Index1] = Input[Index2];
             Input[Index2] = Swap;
