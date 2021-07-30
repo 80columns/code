@@ -12,36 +12,10 @@ Sample output:
     [1, 4, 9, 16, 25, 36]
 """
 
-def main():
-    # no negative or positive
-    print(sort_squared([0, 0, 0]))
-    # [0, 0, 0]
-
-    # all negative
-    print(sort_squared([-10, -5, -3, -2, -1]))
-    # [1, 4, 9, 25, 100]
-
-    # all positive
-    print(sort_squared([10, 24, 32, 54, 77, 89]))
-    # [100, 576, 1024, 2916, 5929, 7921]
-
-    # some negative, some positive
-    print(sort_squared([-6, -4, 1, 2, 3, 5]))
-    # [1, 4, 9, 16, 25, 36]
-
-    # some zero, some positive
-    print(sort_squared([0, 0, 5, 10, 15, 20]))
-    # [0, 0, 25, 100, 225, 400]
-
-    # some negative, some zero
-    print(sort_squared([-16, -8, -4, -2, 0, 0, 0]))
-    # [0, 0, 0, 4, 16, 64, 256]
-
-    # some negative, some zero, some positive
-    print(sort_squared([-20, -10, -5, -2, 0, 0, 0, 3, 7, 11, 13]))
-    # [0, 0, 0, 4, 9, 25, 49, 100, 121, 169, 400]
-
 def sort_squared(arr):
+    if len(arr) == 0:
+        return arr
+
     # determine in O(1) time if all the input numbers are negative
     if arr[-1] < 0:
         # if the last number in the array is negative, then all of them are
@@ -77,6 +51,39 @@ def sort_squared(arr):
         out_arr.insert(0, arr[start]**2)
 
         return out_arr
+
+def main():
+    # empty array
+    print(sort_squared([]))
+    # []
+
+    # no negative or positive
+    print(sort_squared([0, 0, 0]))
+    # [0, 0, 0]
+
+    # all negative
+    print(sort_squared([-10, -5, -3, -2, -1]))
+    # [1, 4, 9, 25, 100]
+
+    # all positive
+    print(sort_squared([10, 24, 32, 54, 77, 89]))
+    # [100, 576, 1024, 2916, 5929, 7921]
+
+    # some negative, some positive
+    print(sort_squared([-6, -4, 1, 2, 3, 5]))
+    # [1, 4, 9, 16, 25, 36]
+
+    # some zero, some positive
+    print(sort_squared([0, 0, 5, 10, 15, 20]))
+    # [0, 0, 25, 100, 225, 400]
+
+    # some negative, some zero
+    print(sort_squared([-16, -8, -4, -2, 0, 0, 0]))
+    # [0, 0, 0, 4, 16, 64, 256]
+
+    # some negative, some zero, some positive
+    print(sort_squared([-20, -10, -5, -2, 0, 0, 0, 3, 7, 11, 13]))
+    # [0, 0, 0, 4, 9, 25, 49, 100, 121, 169, 400]
 
 if __name__ == "__main__":
     main()
