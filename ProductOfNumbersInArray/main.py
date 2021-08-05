@@ -9,7 +9,7 @@ For example, if our input was [1, 2, 3, 4, 5], the expected output would be
 """
 
 # Follow-up: what if you can't use division?
-def GenerateArrayProductWithoutDivision(arr):
+def GenerateArrayProductWithoutDivision1(arr):
     product_stack = []
     output_arr = [0 for x in range(len(arr))]
 
@@ -35,6 +35,24 @@ def GenerateArrayProductWithoutDivision(arr):
 
     return output_arr
 
+def GenerateArrayProductWithoutDivision2(arr):
+    product = 1
+
+    for x in arr:
+        product *= x
+
+    for i in range(0, len(arr)):
+        temp_product = product
+        result = 0
+
+        while temp_product > 0:
+            temp_product -= arr[i]
+            result += 1
+
+        arr[i] = result
+
+    return arr
+
 def GenerateArrayProduct(arr):
     product = 1
 
@@ -47,11 +65,13 @@ def GenerateArrayProduct(arr):
     return arr
 
 def main():
-    print(GenerateArrayProductWithoutDivision([10, 2, 3, 4, 5]))
     print(GenerateArrayProduct([10, 2, 3, 4, 5]))
-
-    print(GenerateArrayProductWithoutDivision([3, 2, 1]))
+    print(GenerateArrayProductWithoutDivision1([10, 2, 3, 4, 5]))
+    print(GenerateArrayProductWithoutDivision2([10, 2, 3, 4, 5]))
+    
     print(GenerateArrayProduct([3, 2, 1]))
+    print(GenerateArrayProductWithoutDivision1([3, 2, 1]))
+    print(GenerateArrayProductWithoutDivision2([3, 2, 1]))
 
 if __name__ == "__main__":
     main()
