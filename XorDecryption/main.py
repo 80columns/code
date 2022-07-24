@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# https://projecteuler.net/problem=59
+
 import itertools
 
 def main():
