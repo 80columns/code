@@ -8,8 +8,6 @@ def minimumPasses(m: int, w: int, p: int, n: int):
     minimum_passes = -1
 
     while True:
-        # print(f"m: {m}, w: {w}, candies: {candies}, passes: {passes}, minimum_passes: {minimum_passes}")
-
         # calculate how many candies can be made with the current machine-worker numbers
         new_candies = m * w
 
